@@ -1,0 +1,1322 @@
+<!DOCTYPE html> 
+<html lang="es"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<!-- TÍTULO DE LA PÁGINA --> 
+<title>Plataforma Educativa</title> 
+
+<style>
+
+/* ===== ESTILO GENERAL ===== */
+body{
+ font-family: Arial;
+ margin:0;
+ background:#f5f5f5;
+}
+
+html, body{
+ width:100%;
+ height:100%;
+ overflow-x:hidden;
+}
+
+/* ===== ENCABEZADO ===== */
+header{
+ background: linear-gradient(90deg, #c62828, #757575);
+ color:white;
+ height:95px;
+
+ display:flex;
+ justify-content:center;
+ align-items:center;
+
+ border-bottom:none;
+
+ box-sizing:border-box;
+ margin:0;
+ padding:0;
+}
+
+/* ===== TITULO PRINCIPAL ===== */
+header h1{
+ font-size:55px;
+ font-weight:bold;
+ margin:0;
+ line-height:1;
+}
+
+/* ===== CONTENEDORES ===== */
+.container{
+ width:100%;
+ min-height:calc(100vh - 95px);
+ text-align:center;
+ box-sizing:border-box;
+ padding:0;
+ margin:0;
+}
+
+/* ===== LOGIN ===== */
+#login{
+ display:flex;
+ width:100%;
+ height:calc(100vh - 95px);
+ margin:0;
+ padding:0;
+ overflow:hidden;
+}
+
+/* ===== IMAGEN IZQUIERDA ===== */
+.login-img{ 
+ width:60%; 
+ height:100%; 
+ background-image:url('img/Fondo.jpeg'); 
+ background-size:cover; 
+ background-position:center; 
+ background-repeat:no-repeat; 
+}
+
+/* ===== LOGIN DERECHA ===== */
+
+.login-box{
+ width:40%;
+ height:100%;
+ background:white;
+
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+}
+
+/* ===== INPUTS ===== */
+
+.login-box input{
+
+ width:250px;
+
+ padding:12px;
+
+ border-radius:10px;
+
+ border:2px solid #bdbdbd;
+
+ font-size:16px;
+}
+
+/* ===== BOTON ===== */
+
+.login-box button{
+
+ background:#c62828;
+
+ color:white;
+
+ padding:12px 25px;
+
+ border:none;
+
+ border-radius:10px;
+
+ cursor:pointer;
+
+ font-size:16px;
+}
+
+.login-box button:hover{
+
+ background:#8e0000;
+}
+
+/* ===== CURSOS ===== */
+#cursos{ background: 
+ linear-gradient(135deg,#8D9BA0,#ffffff); 
+}
+
+/* ===== MATERIAS ===== */
+#materias{
+ background: linear-gradient(135deg,#8D9BA0,#ffffff);
+ linear-gradient(rgba(255,255,255,0.90), rgba(255,255,255,0.90)),
+ url('img/materia.png');
+
+ background-size: cover;
+ background-position: center;
+}
+
+/* ===== TRIMESTRES ===== */
+#trimestres{
+ background: linear-gradient(135deg,#8D9BA0,#ffffff);
+ linear-gradient(rgba(255,255,255,0.90), rgba(255,255,255,0.90)),
+ url('img/CURSOS.jpg');
+
+ background-size: cover;
+ background-position: center;
+}
+
+/* ===== JUEGO ===== */
+#juego{
+ background:#fafafa;
+}
+
+/* ===== TITULOS ===== */
+h2{
+ font-size:70px;
+ color:#424242;
+ font-weight:bold;
+ text-shadow:2px 2px 5px rgba(0,0,0,0.3);
+ margin:0;
+ padding-top:20px;
+}
+
+/* ===== TARJETAS ===== */
+.card{
+
+ background: linear-gradient(135deg,#c62828,#757575);
+
+ color:white;
+
+ padding:20px;
+ margin:15px;
+ display:inline-block;
+
+ width:28%;
+ min-width:220px;
+
+ cursor:pointer;
+
+ border-radius:20px;
+
+ box-shadow:0 4px 12px rgba(0,0,0,0.3);
+
+ text-align:center;
+
+ font-weight:bold;
+ font-size:20px;
+
+ transition:0.3s;
+}
+
+.materia-card{
+
+ height:120px;
+
+ background-size:cover !important;
+
+ background-position:center !important;
+
+ color:white;
+
+ text-shadow:2px 2px 5px black;
+
+ display:inline-flex;
+
+ align-items:center;
+
+ justify-content:center;
+
+ font-size:28px;
+
+ border:3px solid white;
+}
+
+/* ===== EFECTO ===== */
+.card:hover{
+
+ transform:scale(1.05);
+
+ background: linear-gradient(135deg,#ef5350,#9e9e9e);
+}
+
+/* ===== VENTANAS FLOTANTES ===== */
+
+/* Permite posicionar el mensaje */
+.card{
+ position: relative;
+}
+
+/* ===== VENTANA FLOTANTE GRANDE ===== */
+.card::after{
+
+ content: attr(data-msg);
+
+ position: absolute;
+
+ bottom: 120%;
+ left: 50%;
+
+ transform: translateX(-50%);
+
+ background: white;
+
+ color: black;
+
+ padding: 12px;
+
+ border-radius: 0;
+
+ border: 2px solid #c62828;
+
+ font-size: 14px;
+
+ font-weight: bold;
+
+ white-space: nowrap;
+
+ opacity: 0;
+
+ pointer-events: none;
+
+ transition: 0.3s;
+
+ box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+ z-index: 1000;
+}
+
+/* ===== FLECHA BLANCA ===== */
+.card::before{
+
+ content: "";
+
+ position: absolute;
+
+ bottom: 108%;
+ left: 50%;
+
+ transform: translateX(-50%);
+
+ border-width: 8px;
+
+ border-style: solid;
+
+ border-color: white transparent transparent transparent;
+
+ opacity: 0;
+
+ transition: 0.3s;
+}
+
+/* Mostrar mensaje */
+.card:hover::after,
+.card:hover::before{
+
+ opacity: 1;
+}
+
+/* ===== CURSOS ===== */
+.cursos-card{
+
+ width:300px;
+ height:80px;
+
+ font-size:30px;
+
+ border-radius:25px;
+}
+
+/* ===== BOTONES ===== */
+button{
+
+ background:#c62828;
+ color:white;
+
+ padding:12px 20px;
+
+ margin-top:15px;
+
+ cursor:pointer;
+
+ border:none;
+
+ border-radius:12px;
+
+ font-size:16px;
+}
+
+button:hover{
+ background:#8e0000;
+}
+
+/* ===== INPUTS ===== */
+input{
+
+ padding:12px;
+
+ width:250px;
+
+ border-radius:10px;
+
+ border:2px solid #bdbdbd;
+
+ font-size:15px;
+}
+
+/* ===== IMAGENES ===== */
+img{
+ max-width:220px;
+ display:block;
+ margin:10px auto;
+}
+
+/* ===== OCULTAR ===== */
+.hidden{
+ display:none !important;
+}
+
+/* ================================= */
+/* VENTANAS GRANDES SOLO TRIMESTRES */
+/* ================================= */
+.trimestre-card::after{
+
+ content: attr(data-msg);
+ position: absolute;
+ top: 50%; left: 110%; 
+ transform: translateX(-50%);
+ width: 300px; 
+ min-height: 90px;
+ background: white; 
+ color: black; 
+ padding: 20px; 
+ border: 3px solid #c62828;
+ border-radius: 0;
+ font-size: 18px;
+ font-weight: normal;
+ text-align: justify;
+ line-height: 1.5;
+ white-space: normal;
+ overflow-wrap: break-word;
+ opacity: 0;
+ pointer-events: none;
+ transition: 0.3s;
+ box-shadow: 0 6px 15px rgba(0,0,0,0.35);
+ z-index: 9999; 
+}
+
+#tri1::after{
+
+ top: 100%;
+ left: auto;
+ right: 60%;
+
+ transform: translateY(10px);
+}
+
+#tri2::after{
+
+ top: 100%;
+ left: 60%;
+ right: auto;
+
+ transform: translateY(10px);
+}
+
+#tri3::after{
+
+ top: 100%;
+ left: 60%;
+ right: auto;
+
+ transform: translateY(10px);
+}
+
+.trimestre-card::before{
+
+ content: "";
+
+ position: absolute;
+
+ top: -20px;
+
+ left: 50%;
+
+ transform: translateX(-50%);
+
+ border-width: 10px;
+
+ border-style: solid;
+
+ border-color: white transparent transparent transparent;
+
+ opacity: 0;
+
+ transition: 0.3s;
+
+ z-index: 10000;
+}
+
+#tri1::before{
+
+ top: 100%;
+ left: auto;
+ right: 100%;
+
+ transform: translateY(10px);
+
+ border-width: 10px;
+ border-style: solid;
+
+ border-color: transparent transparent transparent white;
+}
+
+#tri2::before{
+
+ top: 50%;
+ left: 100%;
+ right: auto;
+
+ transform: translateY(-50%);
+
+ border-width: 10px;
+ border-style: solid;
+
+ border-color: transparent white transparent transparent;
+}
+
+#tri3::before{
+
+ top: 50%;
+ left: 100%;
+ right: auto;
+
+ transform: translateY(-50%);
+
+ border-width: 10px;
+ border-style: solid;
+
+ border-color: transparent white transparent transparent;
+}
+
+.trimestre-card:hover::after,
+.trimestre-card:hover::before{
+
+ opacity: 1;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================================================= -->
+<!-- ENCABEZADO -->
+<!-- ================================================= -->
+
+<header>
+<h1>Unidad Educativa Los Shyris</h1>
+</header>
+
+<!-- ================================================= -->
+<!-- LOGIN -->
+<!-- ================================================= -->
+
+<div class="container" id="login">
+
+ <!-- LADO IZQUIERDO -->
+ <div class="login-img"></div>
+
+ <!-- LADO DERECHO -->
+ <div class="login-box">
+
+  <h2>INGRESAR</h2>
+
+  <input type="text" id="user" placeholder="Usuario">
+
+  <br><br>
+
+  <input type="password" id="pass" placeholder="Contraseña">
+
+  <br><br>
+
+  <button onclick="login()">Ingresar</button>
+  
+  <br><br>
+
+  <button onclick="registrarUsuario()">Crear Usuario</button>
+
+ </div>
+
+</div>
+
+<!-- ================================================= -->
+<!-- CURSOS -->
+<!-- ================================================= -->
+
+<div class="container hidden" id="cursos">
+
+<h2>Cursos</h2>
+
+<div class="card cursos-card"
+onclick="abrirCurso('Octavo')"
+data-msg="Entrar al curso Octavo">
+Octavo
+</div>
+
+<div class="card cursos-card"
+onclick="abrirCurso('Noveno')"
+data-msg="Entrar al curso Noveno">
+Noveno
+</div>
+
+<div class="card cursos-card"
+onclick="abrirCurso('Décimo')"
+data-msg="Entrar al curso Décimo">
+Décimo
+</div>
+
+<button onclick="cambiarClaveCurso()">
+🔑 Cambiar Claves de Cursos
+</button>
+
+<br><br>
+
+<br>
+
+<button onclick="volverLogin()">⬅️ Regresar</button>
+
+</div>
+
+<!-- ================================================= -->
+<!-- MATERIAS -->
+<!-- ================================================= -->
+
+<div class="container hidden" id="materias">
+
+<h2 id="tituloCurso"></h2>
+
+<div class="card materia-card" id="matematica"
+onclick="abrirMateria('Matematica')"
+data-msg="Abrir Matemática">
+</div>
+
+<div class="card materia-card" id="lengua"
+onclick="abrirMateria('Lengua')"
+data-msg="Abrir Lengua">
+</div>
+
+<div class="card materia-card" id="ciencias"
+onclick="abrirMateria('Ciencias')"
+data-msg="Abrir Ciencias">
+</div>
+
+<div class="card materia-card" id="sociales"
+onclick="abrirMateria('Sociales')"
+data-msg="Abrir Sociales">
+</div>
+
+<div class="card materia-card" id="ingles"
+onclick="abrirMateria('Ingles')"
+data-msg="Abrir Ingles">
+</div>
+
+<br>
+
+<button onclick="volverCursos()">⬅️ Volver</button>
+
+</div>
+
+<!-- ================================================= -->
+<!-- TRIMESTRES -->
+<!-- ================================================= -->
+
+<div class="container hidden" id="trimestres">
+
+<h2 id="tituloMateria"></h2>
+
+<div class="card trimestre-card"
+id="tri1"
+onclick="abrirTrimestre(1)">
+Trimestre 1
+</div>
+
+<div class="card trimestre-card"
+id="tri2"
+onclick="abrirTrimestre(2)">
+Trimestre 2
+</div>
+
+<div class="card trimestre-card"
+id="tri3"
+onclick="abrirTrimestre(3)">
+Trimestre 3
+</div>
+
+<br>
+
+<button onclick="volverMaterias()">⬅️ Volver</button>
+
+</div>
+
+<!-- ================================================= -->
+<!-- JUEGO -->
+<!-- ================================================= -->
+
+<div class="container hidden" id="juego">
+
+<h2>Juego</h2>
+
+<img id="imgJuego" src="img/default.png" alt="Imagen del juego">
+
+<p id="pregunta"></p>
+
+<button onclick="respuesta(true)">Verdadero</button>
+
+<button onclick="respuesta(false)">Falso</button>
+
+<p id="resultado"></p>
+
+<button onclick="volverTrimestres()">⬅️ Volver</button>
+
+</div>
+
+<script>
+
+/* VARIABLES GLOBALES */
+let materiaActual = "";
+let cursoActual = "";
+
+/* USUARIOS */
+let usuarios = JSON.parse(localStorage.getItem("usuarios")) || {
+    "Docente U.E.F": "12345"
+};
+
+let clavesCursos = JSON.parse(localStorage.getItem("clavesCursos")) || {
+    "Octavo": "888",
+    "Noveno": "999",
+    "Décimo": "1010"
+};
+
+/* ================================================= */
+/* LOGIN */
+/* ================================================= */
+
+function login(){
+
+ let u = document.getElementById('user').value.trim();
+ let p = document.getElementById('pass').value;
+
+ if(usuarios[u] && usuarios[u] === p){
+
+   document.getElementById('login').classList.add('hidden');
+
+   document.getElementById('cursos').classList.remove('hidden');
+
+ }else{
+
+   alert("Usuario o contraseña incorrectos");
+
+ }
+}
+
+function registrarUsuario(){
+
+ let nuevoUsuario = prompt("Ingrese un nombre de usuario:");
+
+ if(!nuevoUsuario){
+   return;
+ }
+
+ if(usuarios[nuevoUsuario]){
+   alert("Ese usuario ya existe.");
+   return;
+ }
+
+ let nuevaClave = prompt("Ingrese una contraseña:");
+
+ if(!nuevaClave){
+   return;
+ }
+
+ usuarios[nuevoUsuario] = nuevaClave;
+
+ localStorage.setItem(
+   "usuarios",
+   JSON.stringify(usuarios)
+ );
+
+ alert("Usuario creado correctamente.");
+
+}
+
+function cambiarClaveCurso(){
+
+ let admin = prompt("Ingrese la contraseña del administrador:");
+
+ if(admin !== "12345"){
+   alert("No autorizado");
+   return;
+ }
+
+ let curso = prompt(
+   "¿Qué curso desea modificar?\n\nOctavo\nNoveno\nDécimo"
+ );
+
+ if(!curso){
+   return;
+ }
+
+ curso = curso.trim();
+
+ if(!clavesCursos[curso]){
+   alert("Curso no encontrado");
+   return;
+ }
+
+ let nuevaClave = prompt(
+   "Ingrese la nueva clave para " + curso
+ );
+
+ if(!nuevaClave){
+   return;
+ }
+
+ clavesCursos[curso] = nuevaClave;
+
+ localStorage.setItem(
+   "clavesCursos",
+   JSON.stringify(clavesCursos)
+ );
+
+ alert(
+   "La clave de " + curso + " fue actualizada correctamente."
+ );
+}
+
+/* ================================================= */
+/* ABRIR CURSO */
+/* ================================================= */
+
+function abrirCurso(curso){
+
+ cursoActual = curso;
+
+ let clave = prompt("Ingrese la clave del curso");
+
+ clavesCursos = JSON.parse(localStorage.getItem("clavesCursos")) || clavesCursos;
+
+if(clave === clavesCursos[curso]){
+
+   document.getElementById('tituloCurso').innerText = curso;
+/* ===== IMAGENES POR CURSO ===== */
+
+if(curso === "Octavo"){
+
+ document.getElementById('matematica').style.backgroundImage =
+ "url('img/Octavo Mate.jpg')";
+
+ document.getElementById('lengua').style.backgroundImage =
+ "url('img/Octavo Lengua.jpg')";
+
+ document.getElementById('ciencias').style.backgroundImage =
+ "url('img/Octavo Ciencias.jpg')";
+
+ document.getElementById('sociales').style.backgroundImage =
+ "url('img/Octavo Sociales.jpg')";
+
+ document.getElementById('ingles').style.backgroundImage =
+ "url('img/Octavo Ingles.jpg')";
+}
+
+else if(curso === "Noveno"){
+
+ document.getElementById('matematica').style.backgroundImage =
+ "url('img/Noveno Mate.jpg')";
+
+ document.getElementById('lengua').style.backgroundImage =
+ "url('img/Noveno Lengua.jpg')";
+
+ document.getElementById('ciencias').style.backgroundImage =
+ "url('img/Noveno Ciencias.jpg')";
+
+ document.getElementById('sociales').style.backgroundImage =
+ "url('img/Noveno Sociales.jpg')";
+
+ document.getElementById('ingles').style.backgroundImage =
+ "url('img/Noveno Ingles.jpg')";
+}
+
+else if(curso === "Décimo"){
+
+ document.getElementById('matematica').style.backgroundImage =
+ "url('img/Decimo Mate.jpg')";
+
+ document.getElementById('lengua').style.backgroundImage =
+ "url('img/Decimo Lengua.jpg')";
+
+ document.getElementById('ciencias').style.backgroundImage =
+ "url('img/Decimo Ciencias.jpg')";
+
+ document.getElementById('sociales').style.backgroundImage =
+ "url('img/Decimo Sociales.jpg')";
+
+ document.getElementById('ingles').style.backgroundImage =
+ "url('img/Decimo Ingles.jpg')";
+}
+
+   document.getElementById('cursos').classList.add('hidden');
+   
+   document.getElementById('materias').classList.remove('hidden');
+
+ }else{
+
+   alert("Clave incorrecta");
+
+ }
+}
+
+/* ================================================= */
+/* VOLVER LOGIN */
+/* ================================================= */
+
+function volverLogin(){
+
+ document.getElementById('cursos').classList.add('hidden');
+
+ document.getElementById('login').classList.remove('hidden');
+
+}
+
+/* ================================================= */
+/* VOLVER CURSOS */
+/* ================================================= */
+
+function volverCursos(){
+
+ document.getElementById('materias').classList.add('hidden');
+
+ document.getElementById('cursos').classList.remove('hidden');
+}
+
+/* ================================================= */
+/* ABRIR MATERIA */
+/* ================================================= */
+
+function abrirMateria(m){
+
+ materiaActual = m;
+
+ document.getElementById('tituloMateria').innerText = m;
+
+ /* ================= OCTAVO ================= */
+
+ if(cursoActual === "Octavo"){
+
+   if(m === "Matematica"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar un Quiz sobre Potencia y Raíz Cuadrada el cuál es para saber que tanto sabes.");
+     tri2.setAttribute("data-msg","A continuación observaras un juego sobre una Misión Matemática donde debes resolver los ejercicios para hallar la solución.");
+     tri3.setAttribute("data-msg","A continuación observaras un juego sobre una Ruleta de Palabras con el Tema de Algebra y Geometria para saber cuanto sabes.");
+   }
+
+   else if(m === "Lengua"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar el juego del Ahorcado con el Tema el Discurso para saber cuanto sabes del tema.");
+     tri2.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con diferentes Temas referentes al Segundo Trimestre.");
+     tri3.setAttribute("data-msg","A continuación observaras un Cuadro Comparativo con el Tema Origen de la Escritura.");
+   }
+
+   else if(m === "Ciencias"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar un juego de Clasificacion de Tarjetas con el Tema La Celula.");
+     tri2.setAttribute("data-msg","A continuación observaras un juego de Relacion con el Tema Reproducción Humana donde debes unir el concepto con su imagen");
+     tri3.setAttribute("data-msg","A continuación vas a observar una Trivia con los diferentes Temas referentes al Tercer Trimestre.");
+   }
+
+   else if(m === "Sociales"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar un juego de Comparar Conceptos con los diferentes Temas referentes al Primer Trimestre.");
+     tri2.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas referentes al Segundo Trimestre.");
+     tri3.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas referentes al Tercer Trimestre.");
+   }
+
+   else if(m === "Ingles"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar un juego de Emparejar con el Tema Verbos en Pasado y Presente.");
+     tri2.setAttribute("data-msg","A continuación vas a observar un juego de Comparar Conceptos con el Tema Pasado Simple y Pasado Progresivo.");
+     tri3.setAttribute("data-msg","A continuación vas a observar un juego de Sopa de Letras con los diferentes Temas al Tercer Trimestre.");
+   }
+ }
+
+ /* ================= NOVENO ================= */
+
+ else if(cursoActual === "Noveno"){
+
+   if(m === "Matematica"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar un juego de Sopa de letras con los diferentes Temas referentes al Primer Trimestre.");
+     tri2.setAttribute("data-msg","A continuación vas a observar un juego de Operaciones con el Tema de Monomios y Polinomios.");
+     tri3.setAttribute("data-msg","A continuación vas a observar un juego de Relacion de Columnas con los diferetes Temas al Tercer Trimestre.");
+   }
+
+   else if(m === "Lengua"){
+
+     tri1.setAttribute("data-msg","A continuación observaras un juego de Piñata Challenge con los diferentes Temas del Primer Trimestre.");
+     tri2.setAttribute("data-msg","A continuación observaras un juego de Clasificación de Tarjeta con el Tema La Comunicación.");
+     tri3.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Tercer Trimestre.");
+   }
+
+   else if(m === "Ciencias"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Primer Trimestre.");
+     tri2.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Segundo Trimestre.");
+     tri3.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Tercer Trimestre.");
+   }
+
+   else if(m === "Sociales"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Primer Trimestre.");
+     tri2.setAttribute("data-msg","A continuación vas a observar un juego de Crucigrama con el Tema Civilizaciones Andinas y Colonizadas.");
+     tri3.setAttribute("data-msg","A continuación vas a observar un juego de Ordenar las Letras con el Tema Desafío Demográfico.");
+   }
+
+   else if(m === "Ingles"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar una Sopa de Letras con los diferentes Temas del Primer Trimestre.");
+     tri2.setAttribute("data-msg","A continuación vas a observar un Cuadro Comparativo con los diferentes Temas del Segundo Trimestre.");
+     tri3.setAttribute("data-msg","A continuación vas a observar un Dictado Interactivo con los Diferentes Temas del Tercer Trimestre.");
+   }
+ }
+
+ /* ================= DECIMO ================= */
+
+ else if(cursoActual === "Décimo"){
+
+   if(m === "Matematica"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Primer Trimestre.");
+     tri2.setAttribute("data-msg","A continuación vas a observar una Ruleta de Palabras con los diferentes Temas del Segundo Trimestre.");
+     tri3.setAttribute("data-msg","A continuación vas a observar un FlipCards Matemático con los diferentes Temas del Tercer Trimestre.");
+   }
+
+   else if(m === "Lengua"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Primer Trimestre.");
+     tri2.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Segundo Trimestre.");
+     tri3.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Tercer Trimestre.");
+   }
+
+   else if(m === "Ciencias"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Primer Trimestre");
+     tri2.setAttribute("data-msg","A continuación vas a observar una Ruleta Dinamica con los diferentes Temas del Segundo Trimestre");
+     tri3.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Tercer Trimestre");
+   }
+
+   else if(m === "Sociales"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Primer Trimestre");
+     tri2.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Segundo Trimestre");
+     tri3.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Tercer Trimestre");
+   }
+
+   else if(m === "Ingles"){
+
+     tri1.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Primer Trimestre");
+     tri2.setAttribute("data-msg","A continuación vas a observar una Pizarra Magnetica con los diferentes Temas del Segundo Trimestre");
+     tri3.setAttribute("data-msg","A continuación vas a observar un Quiz Interactivo con los diferentes Temas del Tercer Trimestre");
+   }
+ }
+
+ document.getElementById('materias').classList.add('hidden');
+
+ document.getElementById('trimestres').classList.remove('hidden');
+}
+
+/* ================================================= */
+/* VOLVER MATERIAS */
+/* ================================================= */
+
+function volverMaterias(){
+
+ document.getElementById('trimestres').classList.add('hidden');
+
+ document.getElementById('materias').classList.remove('hidden');
+}
+
+/* ================================================= */
+/* ABRIR TRIMESTRES */
+/* ================================================= */
+
+function abrirTrimestre(t){
+
+ let curso = document.getElementById('tituloCurso').innerText;
+
+ /* ================= OCTAVO ================= */
+
+ /* MATEMÁTICA */
+ if(curso === "Octavo" && materiaActual === "Matematica"){
+
+   if(t === 1){
+     window.open("https://www.fyrebox.com/bot/jm5venvgqmognjgjz2/", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/6a028b10c1a7500a2a470345", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://es.educaplay.com/recursos-educativos/29126772-algebra_y_geometria_a_z_de_matematicas.html", "_blank");
+   }
+ }
+
+ /* LENGUA */
+ else if(curso === "Octavo" && materiaActual === "Lengua"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/69f965d195b27a6230413797", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/6a0ba14001c982d89694cede", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://view.genially.com/69f95da586e0a08fb6712f1d", "_blank");
+   }
+ }
+
+ /* CIENCIAS */
+ else if(curso === "Octavo" && materiaActual === "Ciencias"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/6a027330d3e63dcd4cd093e9", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/6a03e0c62629de023cfdda5c", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://view.genially.com/6a03ea11e236cf59f69d964b", "_blank");
+   }
+ }
+
+ /* SOCIALES */
+ else if(curso === "Octavo" && materiaActual === "Sociales"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/69ff3c6a68e76362e7d3f72c", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/6a028e1deabe9757d38a468b", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://view.genially.com/6a0ba36a2609f7df2f951373", "_blank");
+   }
+ }
+
+ /* INGLES */
+ else if(curso === "Octavo" && materiaActual === "Ingles"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/6a028440662624b94d418ef1", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/6a0510842c7c2c6e7db43765", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://view.genially.com/6a0517525a2da6c17df54b39", "_blank");
+   }
+ }
+
+ /* ================= NOVENO ================= */
+
+ else if(curso === "Noveno" && materiaActual === "Matematica"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/6a09e2f29b64b7cb28f1a5e1", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/69ff33b8d2b47870b1ae76ff", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://es.educaplay.com/recursos-educativos/29172726-graficos_y_logica_parejas_de_conceptos.html", "_blank");
+   }
+ }
+
+ else if(curso === "Noveno" && materiaActual === "Lengua"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/6a051eaa1edf3724abaa635f", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/6a0526bb5a2da6c17dfb7c65", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://view.genially.com/6a0ba6c430578afd262688e3", "_blank");
+   }
+ }
+
+ else if(curso === "Noveno" && materiaActual === "Ciencias"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/6a0bae6201c982d8969ad017", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/6a0bab9a08ad91db5a217871", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://view.genially.com/6a0ba9226731f1a27bbad21f", "_blank");
+   }
+ }
+
+ else if(curso === "Noveno" && materiaActual === "Sociales"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/6a0bb208701e593c5ede6eb8", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://es.educaplay.com/recursos-educativos/29142560-civilizaciones_andinas_y_colonizacion.html", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://es.educaplay.com/recursos-educativos/29142580-desafio_demografico_y_productivo.html", "_blank");
+   }
+ }
+
+ else if(curso === "Noveno" && materiaActual === "Ingles"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/6a064fb00084f9ea59810e21", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/6a065125e62a8a7e4008305e", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://es.educaplay.com/recursos-educativos/29143298-future_tenses_and_passive_voice_dictation.html", "_blank");
+   }
+ }
+
+ /* ================= DECIMO ================= */
+
+ else if(curso === "Décimo" && materiaActual === "Matematica"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/6a0a1d3e89c9aa1592b27167", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://es.educaplay.com/recursos-educativos/29174756-matematicas_decimo.html", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://view.genially.com/6a0a28e3a41fb8ba7442065e", "_blank");
+   }
+ }
+
+ else if(curso === "Décimo" && materiaActual === "Lengua"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/6a09ee12080a24cd27c276c3", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/6a09f0bb89c9aa1592a47776", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://view.genially.com/6a09f4f0080a24cd27c4c33b", "_blank");
+   }
+ }
+
+ else if(curso === "Décimo" && materiaActual === "Ciencias"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/6a09f74d89c9aa1592a66070", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/6a09f8e269d55b0d7aa4a855", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://view.genially.com/6a09fa7ba41fb8ba743496a4", "_blank");
+   }
+ }
+
+ else if(curso === "Décimo" && materiaActual === "Sociales"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/6a09fd3d79d1e83edc8babf2", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/6a09fe9b417726026a1f4f7e", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://view.genially.com/6a0a0110e0946b53d78b7f43", "_blank");
+   }
+ }
+
+ else if(curso === "Décimo" && materiaActual === "Ingles"){
+
+   if(t === 1){
+     window.open("https://view.genially.com/6a0a05c4417726026a2083e4", "_blank");
+   }
+
+   else if(t === 2){
+     window.open("https://view.genially.com/6a0a07a589c9aa1592abb3ce", "_blank");
+   }
+
+   else if(t === 3){
+     window.open("https://view.genially.com/6a0a19679b64b7cb28ffbd48", "_blank");
+   }
+ }
+
+ /* RESTO */
+
+ else{
+
+   document.getElementById('trimestres').classList.add('hidden');
+
+   document.getElementById('juego').classList.remove('hidden');
+
+   document.getElementById('pregunta').innerText =
+   "Próximamente juegos para esta materia";
+
+   cargarImagen();
+ }
+}
+
+/* ================================================= */
+/* VOLVER TRIMESTRES */
+/* ================================================= */
+
+function volverTrimestres(){
+
+ document.getElementById('juego').classList.add('hidden');
+
+ document.getElementById('trimestres').classList.remove('hidden');
+}
+
+/* ================================================= */
+/* RESPUESTAS */
+/* ================================================= */
+
+function respuesta(r){
+
+ if(r){
+   document.getElementById('resultado').innerText = "Correcto";
+ }else{
+   document.getElementById('resultado').innerText = "Incorrecto";
+ }
+}
+
+</script>
+
+</body>
+</html> 
